@@ -1,38 +1,34 @@
-.App {
+/* ვინაიდან ბევრი ძალიან ცოტა რამაა გასასტილი ყველაფერს აქ ვათავსებ */
+/* common css */
+.centered{
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.App{
+  width:80%;
+  margin: auto;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Home */
+.homeContainer h1{
+  font-size: 30px;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.homeContainer h3{
+  font-size: 22px;
 }
-
-.App-link {
-  color: #61dafb;
+.homeContainer p{
+  font-size: 18px;
 }
+.homeContainer button{
+  padding: 50px 150px;
+  background-color: rgb(253, 134, 87);
+  font-size: 50px;
+  transition: 0.3s;
+}
+.homeContainer button:hover{
+  background-color:rgb(251, 111, 55);
+  color: rgb(70, 70, 70);
+  cursor: pointer;
+}
+/* FileUploader */
+.fileUploader{
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }

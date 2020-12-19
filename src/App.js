@@ -1,23 +1,22 @@
-import logo from './logo.svg';
+import React, {useState} from 'react'
+import Home from './components/Home'
+import FileUploader from './components/FileUploader'
 import './App.css';
 
 function App() {
+  const [showUploader, setShowUploader] = useState(false)
+  const showUploaderHandler = () => {
+    // განვაახლოთ ღილაკის ტექსტი
+    let el = document.getElementById('bigButton')
+    showUploader ? el.innerHTML= "Show Uploader" : el.innerHTML= "Hide Uploader"
+    // განვაახლოთ state
+    setShowUploader(!showUploader)
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Home btnClick = {showUploaderHandler}/>
+      {showUploader ? <FileUploader /> : null}
     </div>
   );
 }
