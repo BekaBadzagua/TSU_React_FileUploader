@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 
 const FileUploader = () => {
     // alreadyAdded ში ჩაიწერება ამ სტრუქტურის ობიექტები
@@ -7,15 +7,12 @@ const FileUploader = () => {
     //     fileName:  // ფაილის სახელი
     // }
     const [alreadyAdded, setAlreadyAdded] = useState([])
-
-    const [selectedFile, setselectedFile] = useState(null)
-    const handleInputChange = (event) => {
-        setselectedFile(event.target.files[0])
-    }
+    const fileInputRef = useRef()
 
     const AddImageHandler = (event) => {
         event.preventDefault();
-
+        debugger;
+        let selectedFile = fileInputRef.current.files[0]
         // შეამოწმე ვალიდურობა
         let { isValid, errorMessage } = checkValidity(selectedFile)
         if (!isValid) {
@@ -29,9 +26,9 @@ const FileUploader = () => {
         // განაახლე state
         let newFile = {
             link: {
-                download:selectedFile.name,
-                innerHTML:`Download ${selectedFile.name}`,
-                href:downloadAddress
+                download: selectedFile.name,
+                innerHTML: `Download ${selectedFile.name}`,
+                href: downloadAddress
             },
             fileName: selectedFile.name
         }
@@ -44,7 +41,7 @@ const FileUploader = () => {
             errorMessage: null
         };
         // შემოწმება undefined-ზე
-        if (selectedFile === undefined || selectedFile === null) {
+        if (file === undefined || file === null) {
             validityState = {
                 isValid: false,
                 errorMessage: "გთხოვთ აირჩიოთ ფაილი"
@@ -77,8 +74,8 @@ const FileUploader = () => {
 
 
 
-    let anchors = alreadyAdded.map((item,index) => {
-        return <a key={index} download={item.link.download} href={item.link.downloadAddress}>{item.link.innerHTML}</a>
+    let anchors = alreadyAdded.map((item, index) => {
+        return <a key={index} download={item.link.download} href={item.link.href}>{item.link.innerHTML}</a>
     })
 
     return (
@@ -89,7 +86,7 @@ const FileUploader = () => {
                     <input
                         type="file"
                         name="imgFile"
-                        onChange={handleInputChange} />
+                        ref={fileInputRef} />
                 </div>
                 <div className="inputWrapper centered">
                     <input
